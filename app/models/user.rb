@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :password, format: { with: VALID_PASSWORD_REGEX }
 
   with_options allow_blank: true do
-    with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]/ } do
+    with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/} do
       validates :first_name
       validates :last_name
     end
