@@ -11,13 +11,11 @@ class User < ApplicationRecord
   validates :first_name_kana, presence: true
   validates :birthday,        presence: true
 
-  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-  validates :password, format: { with: VALID_PASSWORD_REGEX}
-  validates :password_confirmation, format: { with: VALID_PASSWORD_REGEX}
-
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
+  validates :password, format: { with: VALID_PASSWORD_REGEX }
+  validates :password_confirmation, format: { with: VALID_PASSWORD_REGEX }
 
   with_options allow_blank: true do
-
     with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]/ } do
       validates :first_name
       validates :last_name
@@ -29,6 +27,3 @@ class User < ApplicationRecord
     end
   end
 end
-
-
-
