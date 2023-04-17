@@ -5,6 +5,8 @@ class Item < ApplicationRecord
   belongs_to :shipping_charge
   belongs_to :region
   belongs_to :days_to_ship
+  has_one_attached :image
+
 
   validates :title, :description, :price, presence: true
 
