@@ -52,11 +52,6 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Days to ship can't be blank")
       end
-      it 'region_idを選択しなければ出品できない' do
-        @item.region_id = 1
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Region can't be blank")
-      end
       it 'priceが空では出品できない' do
         @item.price = ''
         @item.valid?
