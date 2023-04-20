@@ -21,11 +21,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-  
   end
 
   def edit
- 
   end
 
   def update
@@ -38,7 +36,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-     if @item.destroy
+    if @item.destroy
       redirect_to root_path
     else
       render :show
@@ -53,12 +51,12 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.find (params[:id])
+    @item = Item.find(params[:id])
   end
 
   def move_to_index
-    if !(current_user.id == @item.user_id)
-      redirect_to action: :index
-    end
+    return if current_user.id == @item.user_id
+
+    redirect_to action: :index
   end
 end
