@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show, :new, :create]
 
   def index
-    @items = Item.all.order('created_at DESC')
+    @items = Item.includes(:user).order('created_at DESC')
   end
 
   def new
@@ -24,6 +24,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.user_id != current_user.id ||  @item.order.present?
+      redirect_to root_path
+    end
   end
 
   def update
