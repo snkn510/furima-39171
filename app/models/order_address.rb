@@ -1,7 +1,7 @@
 class OrderAddress
   include ActiveModel::Model
   # order_idは、保存されたタイミングで生成されるため、attr_accessorにおいて不要なカラムとなる（書くと蛇足なのでエラー）
-  attr_accessor :user_id, :item_id, :postal_code, :region_id, :city, :street, :building_name, :phone_number
+  attr_accessor :user_id, :item_id, :postal_code, :region_id, :city, :street, :building_name, :phone_number, :token
 
  # 4行目と同じくこのタイミングでは生成前なので「validates :order_id」は不要
   with_options presence: true do
@@ -14,6 +14,7 @@ class OrderAddress
     validates :city
     validates :street
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is invalid' }
+    validates :token
   end
   
 
