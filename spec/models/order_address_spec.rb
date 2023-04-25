@@ -36,7 +36,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @order_address.postal_code = '1231234'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it 'regionを選択していないと保存できないこと' do
         @order_address.region_id = 1
@@ -61,24 +61,24 @@ RSpec.describe OrderAddress, type: :model do
       it 'phone_numberが9桁以下だと保存できないこと' do
         @order_address.phone_number = '090123456'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberが12桁以上だと保存できないこと' do
         @order_address.phone_number = '090123456789'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberにハイフンがあると保存できないこと' do
         @order_address.phone_number = '090-1234-5678'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberが全角数値だと保存できないこと' do
         @order_address.phone_number = '０９０１２３４５６７８'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
-      it "tokenが空では保存できないこと" do
+      it 'tokenが空では保存できないこと' do
         @order_address.token = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
