@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.describe OrderAddress, type: :model do
   describe '配送先情報の保存' do
     before do
-      @order_address = FactoryBot.build(:order_address)
       user = FactoryBot.create(:user)
+      item = FactoryBot.create(:item)
+      @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
     end
 
     context '配送先情報が保存できる場合' do
