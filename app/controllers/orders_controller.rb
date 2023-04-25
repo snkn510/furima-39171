@@ -4,15 +4,12 @@ class OrdersController < ApplicationController
   before_action :non_purchased_item, only: [:index, :create]
 
   def index
-    # @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
     return unless current_user == @item.user
-
     redirect_to root_path
   end
 
   def create
-    # @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
       pay_item
@@ -32,7 +29,6 @@ class OrdersController < ApplicationController
   end
 
   def non_purchased_item
-    # @item = Item.find(params[:item_id])
     redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
   end
 
